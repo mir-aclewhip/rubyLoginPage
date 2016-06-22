@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LoginPage</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons"%>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo center">Logo</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse" style="margin-left:1cm"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right:1cm">
+        <% if current_user %> 
+        <li><%= current_user.email %></li> 
+        <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+        <% else %> 
+        <li><%= link_to "Login", 'login' %></a></li> 
+        <li><%= link_to "Signup", 'signup' %></a></li> 
+        <% end %>
+      </ul>
+      <ul class="left hide-on-med-and-down">
+        <li><a href="#">Components</a></li>
+        <li><a href="#">Get Involved</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="#">Sass</a></li>
+        <li><a href="#">Components</a></li>
+        <li><a href="#">Javascript</a></li>
+        <li><a href="#">Mobile</a></li>
+        <% if current_user %> 
+        <li><%= current_user.email %></li> 
+        <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+        <% else %> 
+        <li><%= link_to "Login", 'login' %></a></li> 
+        <li><%= link_to "Signup", 'signup' %></a></li> 
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
+<%= yield %>
+
+</body>
+</html>
